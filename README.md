@@ -34,7 +34,7 @@ The module can be complex or simple. For example, the [`sayhello`](lib/modules/s
 > **nb:** All code is written in [Coffeescript](http://coffeescript.org/)
 
 ```coffeescript
-  runClientSide: =>
+  runClientSide: =>https://github.com/digitalgravy/pi-voice-server
     new Promise (resolve, reject) =>
       @socket.emit("speech", speak: "Hello everyone")
       resolve()
@@ -72,7 +72,7 @@ The system is designed to run on a [Raspberry Pi 2 Model B](https://www.raspberr
 npm install coffee-script -g
 ```
 
-You will also need an install of [MongoDB](https://www.mongodb.org/). If you're running the PVS on a Raspberry Pi, I would recommend using one of the pre-compiled binaries of MongoDB as it's an absolute nightmare trying to get it to install from source. For this, I'd recommend following this brilliant tutorial by [Jonas Widriksson](http://www.widriksson.com/install-mongodb-raspberrypi/).
+You will also need an install of [MongoDB](https://www.mongodb.org/). If you're running the PVS on a Raspberry Pi, I would recommend using one of the pre-compiled binaries of MongoDB as it's an absolute nightmare trying to get it to install from source. For this, I'd recommend following [this brilliant tutorial](http://www.widriksson.com/install-mongodb-raspberrypi/) by Jonas Widriksson.
 
 Once you've got those, you'll also need to install the NPM dependencies. From within the directory of the project, execute:
 
@@ -86,7 +86,7 @@ Next, you'll need to generate the self-signed SSL certificates so that Node.js c
 node makepem.js
 ```
 
-Now you're about ready to run NVS. From within the directory of the project, execute:
+Now you're about ready to run PVS. From within the directory of the project, execute:
 
 ```shell
 coffee server.coffee
