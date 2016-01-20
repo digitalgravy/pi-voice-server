@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="date_time"><div class="date"></div><div class="time"></div></div>
+  <svg class="listening-icon" viewBox="-83.5 0 640 640">
+    <path class="disabled" d="M236.5,37.5C80.479,37.5-46,163.979-46,320c0,156.021,126.479,282.5,282.5,282.5C392.521,602.5,519,476.021,519,320 C519,163.979,392.521,37.5,236.5,37.5z M236.5,568c-62.365,0-119.348-23.026-162.926-61.033l59.608-59.608 c-8.819-7.163-16.878-15.223-24.041-24.041l-59.609,59.608C11.526,439.348-11.5,382.365-11.5,320c0-136.966,111.034-248,248-248 c62.365,0,119.348,23.026,162.926,61.033l-59.609,59.609c8.819,7.163,16.879,15.222,24.041,24.041l59.609-59.609 C461.474,200.652,484.5,257.635,484.5,320C484.5,456.967,373.467,568,236.5,568z"/>
+    <path d="M236.5,380c33.2,0,59.8-26.8,59.8-60l0.2-120c0-33.2-26.8-60-60-60s-60,26.8-60,60v120C176.5,353.2,203.3,380,236.5,380z M342.5,320c0,60-50.8,102-106,102s-106-42-106-102h-34c0,68.4,54.4,124.6,120,134.4V520h40v-65.6c65.6-9.601,120-66,120-134.4 H342.5z"/>
+  </svg>
+  <div class="loader"></div>
+  <canvas id="waveform" height="256"></canvas>
+  <p id="transcript"></p>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/moment.min.js"></script>
+<script src="/js/waveform-0.1.js"></script>
+<script src="/js/client-0.1.js"></script>
+<script src="/js/datetime-0.1.js"></script>
+<script>
+  $(document).ready(function(){
+    var socket = io.connect('https://localhost');
+    voiceClient = new VoiceClient({
+      givenName: "imogen",
+      socket: socket,
+      waveform: $('#waveform'),
+      debug: $('#transcript')
+    });
+  });
+</script>
+</html>

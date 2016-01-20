@@ -1,0 +1,102 @@
+<div class="container theme-showcase">
+  <h1>Voice server configuration</h1>
+  <h3>Command List</h3>
+
+  <table class="table">
+    <thead>
+      <tr clas="row">
+        <td>Label</td>
+        <td>Module</td>
+        <td>Examples</td>
+        <td>Actions</td>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each docList}}
+        <tr clas="row" data-id="{{_id}}" data-label="{{label}}" data-examples="{{#each examples}}{{this}},{{/each}}" data-module="{{module}}">
+          <td class="labelVal"><span>{{label}}</span><br><pre>{{_id}}</pre></td>
+          <td class="module">{{module}}</td>
+          <td class="examples">
+            <ul>
+              {{#each examples}}
+                <li>{{this}}</li>
+              {{/each}}
+            </ul>
+          </td>
+          <td class="actions"><button class="edit btn btn-default btn-block">Edit</button><button class="update hidden btn btn-default btn-block">Update</button><button class="cancel hidden btn btn-info btn-block">Cancel</button><button class="delete btn btn-danger btn-block">Delete</button></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <h3>Create new command</h3>
+  <form action="/admin/create" method="post">
+    <table class="table">
+      <thead>
+        <tr clas="row">
+          <td>Label</td>
+          <td>Module</td>
+          <td>Examples</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input placeholder="label" type="text" name="label" />
+          </td>
+          <td>
+            <input placeholder="moduleName" type="text" name="module" />
+          </td>
+          <td>
+            <textarea placeholder="example sentence one&#10;example sentence two" name="examples" rows="5"></textarea>
+          </td>
+          <td>
+            <input value="Create command" class="btn btn-primary btn-block" type="submit" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('.edit').click(function(e){
+      e.preventDefault();
+      var root = $(this).parents('tr');
+      $('.labelVal', root).html('<input value="'+$('.labelVal span', root).text()+'" type="text" name="label" /><pre>'+root.attr('data-id')+'</pre><input value="'+root.attr('data-id')+'" name="_id" type="hidden" />');
+      $('.module', root).html('<input value="'+$('.module', root).text()+'" name="module" type="text" />');
+      var examples = [];
+      $('.examples ul li', root).each(function(){
+        examples.push($(this).text());
+      });
+      $('.examples', root).html('<textarea name="examples" rows="5">'+examples.join('\n')+'</textarea>');
+      $(this).addClass('hidden');
+      $(this).next('.update').removeClass('hidden');
+      $(this).nextAll('.delete').addClass('hidden');
+      $(this).nextAll('.cancel').removeClass('hidden');
+    });
+    $('.update').click(function(){
+      var root = $(this).parents('tr');
+      var postData = $('input, textarea', root).serialize();
+      $.post('/admin/update', postData, function (res) {
+        window.location = window.location.toString();
+      });
+    });
+    $('.cancel').click(function(e){
+      e.preventDefault();
+      $(this).addClass('hidden');
+      $(this).next('.delete').removeClass('hidden');
+      $(this).prevAll('.edit').removeClass('hidden');
+      $(this).prevAll('.update').addClass('hidden');
+      var root = $(this).parents('tr');
+      $('.labelVal', root).html('<span>'+root.attr('data-label')+'</span><br><pre>'+root.attr('data-id')+'</pre>')
+      $('.module', root).html(root.attr('data-module'));
+      examples = root.attr('data-examples').split(',')
+      examples.pop()
+      $('.examples', root).html('<ul><li>'+examples.join('</li><li>')+'</li></ul>');
+    });
+  });
+</script>

@@ -1,0 +1,7 @@
+body {
+  padding-top: 70px;
+}
+
+input[type=text], textarea {
+  width: 100%;
+}

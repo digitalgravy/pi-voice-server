@@ -1,0 +1,38 @@
+{
+  "name": "pi-voice-server",
+  "version": "0.1.0",
+  "description": "A prototype voice command Intelligent Personal Assistant",
+  "main": "server.coffee",
+  "scripts": {
+    "start": "coffee server.coffee"
+  },
+  "author": "Stuart Elmore <stuart@digitalgravy.co.uk>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/digitalgravy/pi-voice-server"
+  },
+  "bugs": {
+    "url": "https://github.com/digitalgravy/pi-voice-server/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "coffee-script": "^1.10.0",
+    "express": "^4.13.3",
+    "express3-handlebars": "^0.5.2",
+    "moment": "^2.11.1",
+    "mongodb": "^2.1.2",
+    "natural": "^0.2.1",
+    "nlp_compromise": "^2.0.1",
+    "prettyjson": "^1.1.3",
+    "promise": "^7.1.1",
+    "promised-mongo": "^1.2.0",
+    "require-dir": "^0.3.0",
+    "socket.io": "^1.4.4"
+  },
+  "devDependencies": {
+    "cli-table": "^0.3.1",
+    "pem": "^1.8.1"
+  },
+  "private": true
+}
