@@ -6,7 +6,7 @@ natural = require("natural")
 verbInflector = new natural.PresentVerbInflector()
 
 class WeatherModule extends Module
-  apiKey = "0d83112f79ba6935a1c852fd37e0eb52"
+  apiKey = "{{YOURAPIKEY}}" # register at http://openweathermap.org to get your APPID to use as an API key
 
   constructor: (@socket) ->
     console.log ">>> WeatherModule"
