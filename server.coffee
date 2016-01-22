@@ -58,6 +58,7 @@ app.engine("handlebars", handlebars(extname: "handlebars", defaultLayout: "main"
 app.set("view engine", "handlebars")
 
 app.use(express.static("public"))
+app.use("/research", express.static("research"))
 app.use("/admin", require("./routes/admin")(voiceServer))
 
 if useSSL is true
