@@ -34,7 +34,7 @@ The module can be complex or simple. For example, the [`sayhello`](lib/modules/s
 > **nb:** All code is written in [Coffeescript](http://coffeescript.org/)
 
 ```coffeescript
-  runClientSide: =>https://github.com/digitalgravy/pi-voice-server
+  runClientSide: =>
     new Promise (resolve, reject) =>
       @socket.emit("speech", speak: "Hello everyone")
       resolve()
