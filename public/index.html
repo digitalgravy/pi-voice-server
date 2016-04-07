@@ -15,16 +15,12 @@
   <p id="transcript"></p>
 </body>
 <script src="/socket.io/socket.io.js"></script>
-<script src="/js/jquery-2.1.4.min.js"></script>
-<script src="/js/moment.min.js"></script>
-<script src="/js/waveform-0.1.js"></script>
-<script src="/js/client-0.1.js"></script>
-<script src="/js/datetime-0.1.js"></script>
+<script src="/js/app.js"></script>
 <script>
   $(document).ready(function(){
     var socket = io.connect('https://localhost');
     voiceClient = new VoiceClient({
-      givenName: "imogen",
+      givenName: "steve",
       socket: socket,
       waveform: $('#waveform'),
       debug: $('#transcript')
